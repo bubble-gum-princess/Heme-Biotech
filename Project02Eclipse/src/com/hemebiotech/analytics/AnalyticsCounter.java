@@ -5,26 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
- * 
+ * class with main method 
  * @author faizm
  *
  */
 public class AnalyticsCounter {
 
-	static final String INPUT_FILE = "D:\\P4 Heme documents\\symptoms.txt";
-	static final String OUTPUT_FILE = "D:\\P4 Heme documents\\result.out";
-
 	public static void main(String[] args) throws IOException {
-		ISymptomReader symptomReader = new ReadSymptomDataFromFile(INPUT_FILE);
+		String filePath = AnalyticsCounter.class.getResource("/symptoms.txt").getFile();
+		ISymptomReader symptomReader = new ReadSymptomDataFromFile(filePath);
 		List<String> symptoms = symptomReader.GetSymptoms();
 		System.out.println(symptoms);
 
 		Map<String, Integer> mapSymptoms = symptomCount(symptoms);
 
-		ISymptomWriter symptomWriter = new WriteSymptomDataToFile(OUTPUT_FILE);
+		ISymptomWriter symptomWriter = new WriteSymptomDataToFile("result.out");
 		symptomWriter.writeSymptoms(mapSymptoms);
 	}
 
+	/**
+	 * count number of symptoms from the given list
+	 * @param list of symptoms
+	 * @return map of occurrences per symptom
+	 */
 	static Map<String, Integer> symptomCount(List<String> list) {
 		Map<String, Integer> mapSymptoms = new HashMap<>();
 		for (String s : list) {
