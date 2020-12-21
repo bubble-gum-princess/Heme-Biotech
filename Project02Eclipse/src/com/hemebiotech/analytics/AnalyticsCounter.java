@@ -14,7 +14,7 @@ public class AnalyticsCounter {
 	public static void main(String[] args) throws IOException {
 		String filePath = AnalyticsCounter.class.getResource("/symptoms.txt").getFile();
 		ISymptomReader symptomReader = new ReadSymptomDataFromFile(filePath);
-		List<String> symptoms = symptomReader.GetSymptoms();
+		List<String> symptoms = symptomReader.getSymptoms();
 		System.out.println(symptoms);
 
 		Map<String, Integer> mapSymptoms = symptomCount(symptoms);
